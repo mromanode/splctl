@@ -55,7 +55,7 @@ python splctl.py [OPTIONS]
 ### Example Commands
 1. **Online Installation**:
    ```bash
-   python splctl.py -m online -a app1 app2
+   python splctl.py -m online
 2. **Installation with local apps**:
    ```bash
    python splctl.py -m online -a app1 app2

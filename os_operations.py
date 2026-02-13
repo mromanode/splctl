@@ -72,7 +72,11 @@ def extract_archive(
 
 def extract_a_list_of_archive(
     archives: list[pathlib.Path], destination: pathlib.Path
-) -> pathlib.Path:
+) -> pathlib.Path | None:
+    if not archives:
+        logging_config.logger.info("[ARCHIVE] No archives to extract — skipping.")
+        return None
+
     try:
         logging_config.logger.info(
             f"[ARCHIVE] Extracting '{archives}' to '{destination}'..."
@@ -82,7 +86,7 @@ def extract_a_list_of_archive(
                 tar_ref.extractall(path=destination, filter="tar")
                 extracted_folder = pathlib.Path(destination)
                 logging_config.logger.info(
-                    f"[ARCHIVE] Extracted apps: {archives} in '{extracted_folder}'."
+                    f"[ARCHIVE] Extracted archives: {archives} in '{extracted_folder}'."
                 )
                 return extracted_folder
         raise ValueError("No archives provided in the list.")

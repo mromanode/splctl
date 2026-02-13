@@ -97,7 +97,9 @@ def extract_a_list_of_archive(
         raise
 
 
-def execute_shell_command(command: str) -> subprocess.CompletedProcess[str]:
+def execute_shell_command(
+    command: str, check: bool = True
+) -> subprocess.CompletedProcess[str]:
     args = shlex.split(command)
     try:
         result = subprocess.run(

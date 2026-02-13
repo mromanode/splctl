@@ -81,7 +81,7 @@ def get_args():
         if not args.url:
             parser.error("Method 'url' requires an url.")
 
-    if args.apps == pathlib.Path(""):
-        pass
+    if args.apps is None:
+        args.apps = []
 
     return args

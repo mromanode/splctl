@@ -68,11 +68,11 @@ def extract_a_list_of_apps(apps: list[pathlib.Path], destination: pathlib.Path):
 
 
 if __name__ == "__main__":
-    splunk_user = args.username
-    splunk_group = args.groupname
+    splunk_user = args.user
+    splunk_group = args.group
 
-    splunk_path = args.install_dir / "splunkforwarder"
-    splunk_target_path = args.install_dir
+    splunk_path = args.directory / "splunkforwarder"
+    splunk_target_path = args.directory
 
     splunk_apps = args.apps
 
@@ -82,11 +82,11 @@ if __name__ == "__main__":
     if not verify_directory_exists(splunk_path):
         if args.method == "online":
             archive_path = download_splunk_archive(get_latest_download_url())
-            extract_splunk_archive(archive_path, args.install_dir)
+            extract_splunk_archive(archive_path, args.directory)
 
         if args.method == "local":
             archive_path = args.archive_path
-            extract_splunk_archive(archive_path, args.install_dir)
+            extract_splunk_archive(archive_path, args.directory)
 
         if args.method == "url":
             splunk_url = download_splunk_archive(args.url)

@@ -6,7 +6,7 @@ logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("splctl.log")
 
-console_handler.setLevel(logging.WARNING)
+console_handler.setLevel(logging.INFO)
 file_handler.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter(

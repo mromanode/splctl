@@ -71,24 +71,24 @@ def extract_archive(
 
 
 def extract_a_list_of_archive(
-    apps: list[pathlib.Path], destination: pathlib.Path
+    archives: list[pathlib.Path], destination: pathlib.Path
 ) -> pathlib.Path:
     try:
         logging_config.logger.info(
-            f"[ARCHIVE] Extracting '{apps}' to '{destination}'..."
+            f"[ARCHIVE] Extracting '{archives}' to '{destination}'..."
         )
-        for app in apps:
-            with tarfile.open(app, "r:gz") as tar_ref:
+        for archive in archives:
+            with tarfile.open(archive, "r:gz") as tar_ref:
                 tar_ref.extractall(path=destination, filter="tar")
                 extracted_folder = pathlib.Path(destination)
                 logging_config.logger.info(
-                    f"[ARCHIVE] Extracted apps: {apps} in '{extracted_folder}'."
+                    f"[ARCHIVE] Extracted apps: {archives} in '{extracted_folder}'."
                 )
                 return extracted_folder
         raise ValueError("No archives provided in the list.")
     except tarfile.ExtractError as e:
         logging_config.logger.error(
-            f"[ARCHIVE] Failed to extract '{apps}'. Details: {e}"
+            f"[ARCHIVE] Failed to extract '{archives}'. Details: {e}"
         )
         raise
 

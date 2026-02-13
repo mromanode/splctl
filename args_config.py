@@ -9,7 +9,6 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "-u",
     "--user",
-    dest="username",
     default="splunkfwd",
     type=str,
     help="Specify the least privilege user. Default: splunkfwd.",
@@ -18,7 +17,6 @@ parser.add_argument(
 parser.add_argument(
     "-g",
     "--group",
-    dest="groupname",
     default="splunkfwd",
     type=str,
     help="Specify the least privilege user group. Default: splunkfwd.",
@@ -44,7 +42,6 @@ parser.add_argument(
 parser.add_argument(
     "-t",
     "--tar",
-    dest="archive_path",
     type=pathlib.Path,
     help="Path to the Splunk UF tar archive (Required if method is local).",
 )
@@ -58,7 +55,6 @@ parser.add_argument(
 parser.add_argument(
     "-s",
     "--start",
-    dest="start_service",
     default="yes",
     type=str,
     choices=["yes", "no"],
@@ -68,7 +64,6 @@ parser.add_argument(
 parser.add_argument(
     "-d",
     "--directory",
-    dest="install_dir",
     type=pathlib.Path,
     default="/opt",
     help="Specify Splunk target installation path. Default: /opt.",
@@ -85,5 +80,8 @@ def get_args():
     if args.method == "url":
         if not args.url:
             parser.error("Method 'url' requires an url.")
+
+    if args.apps == pathlib.Path(""):
+        pass
 
     return args

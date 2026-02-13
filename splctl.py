@@ -34,7 +34,7 @@ def set_splunk_env_variable(
     bashrc_path = pathlib.Path(f"/home/{user}/.bashrc")
     target_string = '\nexport {var_name}="{var_value}"\n'
     if not os_operations.check_string_in_file(bashrc_path, target_string):
-        os_operations.append_to_bashrc(bashrc_path, user, var_name, var_value)
+        os_operations.append_to_bashrc(bashrc_path, var_name, var_value)
 
 
 def extract_splunk_archive(
@@ -52,7 +52,7 @@ def set_directory_ownership(
 def enable_splunk_boot_start(group: str, user: str) -> None:
     os_operations.execute_shell_command(
         f"/opt/splunkforwarder/bin/splunk enable boot-start -systemd-managed 1 -user {user} -group {group} --accept-license --answer-yes --no-prompt --gen-and-print-passwd",
-        manual_check=False,
+        check=False,
     )
 
 

@@ -98,12 +98,12 @@ def extract_a_list_of_archive(
 
 
 def execute_shell_command(
-    command: str, check: bool = True
+    command: str, manual_check: bool = True
 ) -> subprocess.CompletedProcess[str]:
     args = shlex.split(command)
     try:
         result = subprocess.run(
-            args, capture_output=True, text=True, check=True, timeout=10
+            args, capture_output=True, text=True, check=manual_check, timeout=10
         )
         logging_config.logger.info(
             f"[CMD] Command: '{command}' | Return Code: {result.returncode} | Output: {result.stdout.strip()}"

@@ -98,12 +98,12 @@ def extract_a_list_of_archive(
 
 
 def execute_shell_command(
-    command: str, manual_check: bool = True
+    command: str, check: bool = True
 ) -> subprocess.CompletedProcess[str]:
     args = shlex.split(command)
     try:
         result = subprocess.run(
-            args, capture_output=True, text=True, check=manual_check, timeout=10
+            args, capture_output=True, text=True, check=check, timeout=10
         )
         logging_config.logger.info(
             f"[CMD] Command: '{command}' | Return Code: {result.returncode} | Output: {result.stdout.strip()}"
@@ -117,7 +117,7 @@ def execute_shell_command(
 
 
 def append_to_bashrc(
-    bashrc_path: pathlib.Path, user: str, var_name: str, var_value: pathlib.Path | str
+    bashrc_path: pathlib.Path, var_name: str, var_value: pathlib.Path | str
 ) -> None:
     try:
         with open(bashrc_path, "a") as f:

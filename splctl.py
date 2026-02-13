@@ -51,7 +51,8 @@ def set_directory_ownership(
 
 def enable_splunk_boot_start(group: str, user: str) -> None:
     os_operations.execute_shell_command(
-        f"/opt/splunkforwarder/bin/splunk enable boot-start -systemd-managed 1 -user {user} -group {group} --accept-license --answer-yes --no-prompt --gen-and-print-passwd"
+        f"/opt/splunkforwarder/bin/splunk enable boot-start -systemd-managed 1 -user {user} -group {group} --accept-license --answer-yes --no-prompt --gen-and-print-passwd",
+        check=False,
     )
 
 

@@ -56,12 +56,15 @@ python splctl.py [OPTIONS]
 1. **Online Installation**:
    ```bash
    python splctl.py -m online -a app1 app2
+2. **Installation with local apps**:
+   ```bash
+   python splctl.py -m online -a app1 app2
    ```
-2. **Local Installation**:
+3. **Local Installation**:
    ```bash
    python splctl.py -m local -t /path/to/splunk.tgz
    ```
-3. **URL Installation**:
+4. **URL Installation**:
    ```bash
    python splctl.py -m url --url https://example.com/splunk.tgz
    ```
@@ -90,3 +93,4 @@ Marco Romano, 2026.
 ## Roadmap
 - **Uninstall**: Add functionality to automate the uninstallation of Splunk Universal Forwarder, including user and directory cleanup.
 - **Cross-Platform Support**: Extend compatibility to other operating systems like macOS and Windows.
+- **Installation with apps from Splunkbase**: At the moment, the script support apps locally.

@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+from __future__ import annotations
 from bs4 import BeautifulSoup
 import pathlib
 import urllib.parse

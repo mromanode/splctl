@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+from __future__ import annotations
 import pathlib
 import args_config
 import web_requests

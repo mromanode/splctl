@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+from __future__ import annotations
 import logging
 
 logger = logging.getLogger(__name__)

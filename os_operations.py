@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+from __future__ import annotations
+import sys
 import urllib.parse
 import pwd
 import pathlib
@@ -49,6 +54,14 @@ def check_string_in_file(file_path: pathlib.Path, target_string: str) -> bool:
     return False
 
 
+def _safe_extractall(tar_ref: tarfile.TarFile, path: pathlib.Path) -> None:
+    """Wrapper for extractall() that uses the 'filter' param only on Python 3.12+."""
+    if sys.version_info >= (3, 12):
+        tar_ref.extractall(path=path, filter="tar")
+    else:
+        tar_ref.extractall(path=path)
+
+
 def extract_archive(
     archive_path: pathlib.Path, destination: pathlib.Path
 ) -> pathlib.Path:
@@ -57,7 +70,7 @@ def extract_archive(
             f"[ARCHIVE] Extracting '{archive_path}' to '{destination}'..."
         )
         with tarfile.open(archive_path, "r:gz") as tar_ref:
-            tar_ref.extractall(path=destination, filter="tar")
+            _safe_extractall(tar_ref, destination)
             extracted_folder = pathlib.Path(destination) / tar_ref.getnames()[0]
             logging_config.logger.info(
                 f"[ARCHIVE] Extraction complete. Output: '{extracted_folder}'."
@@ -83,7 +96,7 @@ def extract_a_list_of_archive(
         )
         for archive in archives:
             with tarfile.open(archive, "r:gz") as tar_ref:
-                tar_ref.extractall(path=destination, filter="tar")
+                _safe_extractall(tar_ref, destination)
                 extracted_folder = pathlib.Path(destination)
                 logging_config.logger.info(
                     f"[ARCHIVE] Extracted archives: {archives} in '{extracted_folder}'."

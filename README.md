@@ -1,9 +1,13 @@
 # Splctl: Splunk Installation Automation Tool
 
 ## Overview
+
 Splctl is a Python-based command-line utility designed to automate the installation and configuration of Splunk Universal Forwarder. It simplifies the process of downloading, extracting, and setting up Splunk, while ensuring best practices for user and directory management.
 
+> Tested on Ubuntu 20.04 / 22.04 / 24.04
+
 ## Features
+
 - **Automated Splunk Installation**: Supports online, local, and URL-based installation methods.
 - **User and Group Management**: Creates and verifies Splunk-specific users and groups.
 - **Environment Configuration**: Sets up environment variables for Splunk.
@@ -11,7 +15,24 @@ Splctl is a Python-based command-line utility designed to automate the installat
 - **Service Management**: Enables Splunk to start at boot and manages its service lifecycle.
 - **Logging**: Comprehensive logging for all operations.
 
+## Binaries
+
+You can find the precompiled binaries [in release published releases](https://github.com/mromanode/splctl/releases)
+
+First, set the execution permissions:
+
+```bash
+chmod +x splctl
+```
+
+Then run it without specifying Python:
+
+```bash
+./splctl -a app1,app2,app3
+```
+
 ## Requirements
+
 - Python 3.8+
 - Dependencies listed in `requirements.txt`:
   - BeautifulSoup4
@@ -25,6 +46,7 @@ Splctl is a Python-based command-line utility designed to automate the installat
   - Urllib3
 
 ## Installation
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/mromanode/splctl.git
@@ -36,6 +58,7 @@ Splctl is a Python-based command-line utility designed to automate the installat
    ```
 
 ## Usage
+
 Run the tool with the following options:
 
 ```bash
@@ -43,6 +66,7 @@ python splctl.py [OPTIONS]
 ```
 
 ### Options
+
 - `-u, --user`: Specify the least privilege user (default: `splunkfwd`).
 - `-g, --group`: Specify the user group (default: `splunkfwd`).
 - `-a, --apps`: List of apps to import.
@@ -53,13 +77,14 @@ python splctl.py [OPTIONS]
 - `-d, --directory`: Target installation directory (default: `/opt`).
 
 ### Example Commands
+
 1. **Online Installation**:
    ```bash
-   python splctl.py -m online
+   python splctl.py
    ```
-2. **Installation with local apps**:
+2. **Online Installation with local apps**:
    ```bash
-   python splctl.py -m online -a app1 app2
+   python splctl.py -a app1 app2
    ```
 3. **Local Installation**:
    ```bash
@@ -71,6 +96,7 @@ python splctl.py [OPTIONS]
    ```
 
 ## File Structure
+
 - `splctl.py`: Main entry point for the tool.
 - `args_config.py`: Handles command-line argument parsing.
 - `logging_config.py`: Configures logging for the application.
@@ -80,18 +106,24 @@ python splctl.py [OPTIONS]
 - `LICENSE`: MIT License.
 
 ## Logging
+
 Logs are stored in `splctl.log` and include detailed information about each operation, including errors and debug messages.
 
 ## License
+
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## Contributing
+
 Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## Author
+
 Marco Romano, 2026.
 
 ## Roadmap
+
 - **Uninstall**: Add functionality to automate the uninstallation of Splunk Universal Forwarder, including user and directory cleanup.
 - **Cross-Platform Support**: Extend compatibility to other operating systems like macOS and Windows.
 - **Installation with apps from Splunkbase**: At the moment, the script support apps locally.
+- **Password switch**: Decide between custom password or generated password.
